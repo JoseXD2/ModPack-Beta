@@ -47,12 +47,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.target = null;
 
 		bf.playAnim('firstDeath');
-		#if mobileC
+		#if android
 		addVirtualPad(NONE, A_B);
-		var camcontrol = new FlxCamera();
-		FlxG.cameras.add(camcontrol);
-		camcontrol.bgColor.alpha = 0;
-		_virtualpad.cameras = [camcontrol];	
 		#end
 	}
 
