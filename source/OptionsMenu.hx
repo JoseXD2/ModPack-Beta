@@ -26,20 +26,19 @@ class OptionsMenu extends MusicBeatState
 
 	var options:Array<OptionCategory> = [
 		new OptionCategory("Gameplay", [
-			#if mobileC
-			new CustomControls("Edit a mobile controls..."),
-			#end
+			new AndroidControls(),
 			new DFJKOption(controls),
-			new DownscrollOption("Change the strumline to the TOP/BOTTOM of the screen."),
-			new MiddlescrollOption("Change the strumline to the RIGHT/MIDDLE of the screen."),
+			new DownscrollOption("Change the layout of the strumline."),
 			new GhostTapOption("Ghost Tapping is when you tap a direction and it doesn't give you a miss."),
-			#if mobileC
-			new FastValue("Switch speed of changing value in bottom. (e.g. offset)"),
+			new Judgement("Customize your Hit Timings (LEFT or RIGHT)"),
+			#if desktop
+			new FPSCapOption("Cap your FPS"),
 			#end
-			new Judgement("Customize your Hit Timings. (LEFT or RIGHT)"),
-			new FPSCapOption("Cap your FPS."),
-			new ScrollSpeedOption("Change your scroll speed. (1 = Chart dependent)"),
+			new ScrollSpeedOption("Change your scroll speed (1 = Chart dependent)"),
+			new AccuracyDOption("Change how accuracy is calculated. (Accurate = Simple, Complex = Milisecond Based)"),
 			new ResetButtonOption("Toggle pressing R to gameover."),
+			// new OffsetMenu("Get a note offset based off of your inputs!"),
+			new CustomizeGameplay("Drag'n'Drop Gameplay Modules around to your preference")
 			// new OffsetMenu("Get a note offset based off of your inputs!")
 		]),
 
@@ -66,15 +65,16 @@ class OptionsMenu extends MusicBeatState
 		]),
 
 		new OptionCategory("Misc", [
-			new FPSOption("Toggle the FPS Counter."),
 			#if desktop
-			new ReplayOption("View replays..."),
+			new FPSOption("Toggle the FPS Counter"),
+			new ReplayOption("View replays"),
 			#end
-			new ScoreScreen("Show the score screen after the end of a song."),
-			#if desktop
+			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
+			new WatermarkOption("Enable and disable all watermarks from the engine."),
+			new ScoreScreen("Show the score screen after the end of a song"),
 			new ShowInput("Display every single input in the score screen."),
-			#end
-			new BotPlay("Showcase your charts and mods with autoplay.")
+			new Optimization("No backgrounds, no characters, centered notes, no player 2."),
+			new BotPlay("Showcase your charts and mods with autoplay."),
 		])
 		
 	];
@@ -127,7 +127,7 @@ class OptionsMenu extends MusicBeatState
 		FlxTween.tween(versionShit,{y: FlxG.height - 18},2,{ease: FlxEase.elasticInOut});
 		FlxTween.tween(blackBorder,{y: FlxG.height - 18},2, {ease: FlxEase.elasticInOut});
 
-		#if mobileC
+		#if android
 		addVirtualPad(FULL, A_B);
 		#end
 
